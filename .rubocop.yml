@@ -1,0 +1,90 @@
+require: rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.1
+
+# would like to re-enable
+# https://github.com/nevir/rubocop-rspec/issues/62
+RSpec/FilePath:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 48
+
+Metrics/AbcSize:
+  Max: 51
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/ParameterLists:
+  Max: 10
+
+# default disabled rules
+Style/AutoResourceCleanup:
+  Enabled: true
+
+Style/CollectionMethods:
+  Enabled: true
+  PreferredMethods:
+    collect: 'map'
+    collect!: 'map!'
+    inject: 'reduce'
+    find: 'detect'
+    find_all: 'select'
+
+Style/FirstArrayElementLineBreak:
+  Enabled: true
+
+Style/FirstHashElementLineBreak:
+  Enabled: true
+
+Style/FirstMethodArgumentLineBreak:
+  Enabled: true
+
+Style/FirstMethodParameterLineBreak:
+  Enabled: true
+
+Style/MultilineArrayBraceLayout:
+  Enabled: true
+
+Style/MultilineHashBraceLayout:
+  Enabled: true
+
+Style/MultilineMethodCallBraceLayout:
+  Enabled: true
+
+Style/MultilineMethodDefinitionBraceLayout:
+  Enabled: true
+
+Style/OptionHash:
+  Enabled: true
+
+Style/Send:
+  Enabled: true
+
+RSpec/VerifiedDoubles:
+  Enabled: true
+
+# non-conventional rules
+Style/LambdaCall:
+  EnforcedStyle: braces
+
+Style/EmptyLinesAroundClassBody:
+  EnforcedStyle: empty_lines
+
+Style/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma
+
+RSpec/DescribeMethod:
+  Exclude:
+    - spec/scrum_lint/version_spec.rb
