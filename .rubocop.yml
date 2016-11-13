@@ -11,7 +11,7 @@ Metrics/BlockLength:
     - spec/**/*_spec.rb
 
 RSpec/MultipleExpectations:
-  Max: 5
+  Enabled: false
 
 RSpec/ExampleLength:
   Max: 20

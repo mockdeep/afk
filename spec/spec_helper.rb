@@ -5,7 +5,9 @@ require 'vcr'
 
 RSpec.configuration.after { AFK.reset }
 
+AFK.configuration.trello[:board_id] = 'ui1o0UsE'
+
 VCR.configure do |config|
-  config.cassette_library_dir = 'fixtures/vcr_cassettes'
+  config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.hook_into :webmock
 end
