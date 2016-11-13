@@ -19,7 +19,7 @@ module AFK
     end
 
     def signifier
-      '▶'
+      AFK.configuration.project_signifier
     end
 
   end
