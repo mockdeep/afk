@@ -14,7 +14,7 @@ module AFK
     end
 
     def signifier
-      '▢'
+      AFK.configuration.task_signifier
     end
 
   end

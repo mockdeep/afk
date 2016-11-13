@@ -13,6 +13,17 @@ RSpec.describe AFK::Configuration do
     end
   end
 
+  describe '#task_signifier' do
+    it 'defaults to ▢' do
+      expect(configuration.task_signifier).to eq '▢'
+    end
+
+    it 'can be configured' do
+      configuration.task_signifier = '⍨'
+      expect(configuration.task_signifier).to eq '⍨'
+    end
+  end
+
   it 'does not allow changing non-configurations' do
     expect do
       configuration.pizza_signifier = '⍨'

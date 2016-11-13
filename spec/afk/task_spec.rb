@@ -16,8 +16,13 @@ RSpec.describe AFK::Task do
   end
 
   describe '#signifier' do
-    it 'returns ▢' do
+    it 'returns ▢ by default' do
       expect(described_class.new('foo').signifier).to eq '▢'
+    end
+
+    it 'returns a configured signifier' do
+      AFK.configuration.task_signifier = '☣'
+      expect(described_class.new('foo').signifier).to eq '☣'
     end
   end
 end
