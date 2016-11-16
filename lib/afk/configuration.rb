@@ -1,14 +1,14 @@
 # frozen_string_literal: true
+require 'configurator'
+
 module AFK
   # Configuration class
   class Configuration
 
-    attr_accessor :project_signifier, :task_signifier
+    include Configurator
 
-    def initialize
-      self.project_signifier = '▶'
-      self.task_signifier = '▢'
-    end
+    config :project_signifier
+    config :task_signifier
 
   end
 end
