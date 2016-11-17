@@ -2,6 +2,7 @@
 require_relative 'afk/configuration'
 require_relative 'afk/formatter'
 require_relative 'afk/project'
+require_relative 'afk/runner'
 require_relative 'afk/task'
 require_relative 'afk/version'
 require_relative 'afk/trello/importer'
