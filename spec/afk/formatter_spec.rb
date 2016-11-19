@@ -37,8 +37,7 @@ RSpec.describe AFK::Formatter do
 
   it 'formats project nodes with child tasks' do
     project_1 = AFK::Project.new('top project')
-    task_1 = AFK::Task.new('top task!')
-    project_1.add_child(task_1)
+    project_1.add_child_task('top task!')
     expect(formatter.([project_1])).to eq(
       <<~LISTING.strip
         ▶ top project
@@ -46,8 +45,7 @@ RSpec.describe AFK::Formatter do
       LISTING
     )
     project_2 = AFK::Project.new('another project')
-    task_2 = AFK::Task.new('second task')
-    project_2.add_child(task_2)
+    project_2.add_child_task('second task')
     expect(formatter.([project_1, project_2])).to eq(
       <<~LISTING.strip
         ▶ top project
@@ -61,12 +59,8 @@ RSpec.describe AFK::Formatter do
 
   it 'formats nested projects' do
     project_1 = AFK::Project.new('top project')
-    task_1 = AFK::Task.new('top task!')
-    project_1.add_child(task_1)
-    project_2 = AFK::Project.new('nested project')
-    task_2 = AFK::Task.new('nested task')
-    project_2.add_child(task_2)
-    project_1.add_child(project_2)
+    project_1.add_child_task('top task!')
+    project_1.add_child_task('nested project: nested task')
 
     expect(formatter.([project_1])).to eq(
       <<~LISTING.strip

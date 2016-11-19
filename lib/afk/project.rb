@@ -18,10 +18,6 @@ module AFK
       @children.add_task(title)
     end
 
-    def add_child(node)
-      @children.nodes << node
-    end
-
     def children
       @children.any? ? @children : [AFK::Task.new('')]
     end

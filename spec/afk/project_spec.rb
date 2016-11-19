@@ -9,14 +9,6 @@ RSpec.describe AFK::Project do
     end
   end
 
-  describe '#add_child' do
-    it 'adds a child node' do
-      project = described_class.new('I am a project too!')
-      project.add_child(AFK::Task.new('I am the task'))
-      expect(project.children.map(&:title)).to eq ['I am the task']
-    end
-  end
-
   describe '#add_child_project' do
     it 'adds a child project node' do
       project = described_class.new('Yay project')
@@ -50,7 +42,7 @@ RSpec.describe AFK::Project do
   describe '#children' do
     it 'returns the child nodes of the project' do
       project = described_class.new('I am a project too!')
-      project.add_child(AFK::Task.new('I am the task'))
+      project.add_child_task('I am the task')
       expect(project.children.map(&:title)).to eq ['I am the task']
     end
 

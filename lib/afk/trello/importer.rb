@@ -7,16 +7,16 @@ module AFK
     class Importer
 
       def call
-        project_tree = {}
+        project_tree = AFK::NodeCollection.new
         top_tasks = []
         today_list.cards.each do |card|
           if card.name.include?(':')
-            parse_project(card.name, project_tree)
+            project_tree.add_task(card.name)
           else
             top_tasks << AFK::Task.new(card.name)
           end
         end
-        top_tasks + collect_projects(project_tree)
+        top_tasks + project_tree.nodes
       end
 
     private
@@ -35,30 +35,6 @@ module AFK
 
       def board_id
         AFK.configuration.trello.fetch(:board_id)
-      end
-
-      def parse_project(title, project_tree)
-        return AFK::Task.new(title) unless title.include?(':')
-
-        project_title, title = title.split(':', 2).map(&:strip)
-        project_node = fetch_project_node(project_tree, project_title)
-        project = project_node.fetch(:project)
-        child = parse_project(title, project_node.fetch(:sub_projects))
-        project.add_child(child)
-        project
-      end
-
-      def fetch_project_node(project_tree, project_title)
-        project_tree[project_title] ||= {
-          project: AFK::Project.new(project_title),
-          sub_projects: {},
-        }
-
-        project_tree.fetch(project_title)
-      end
-
-      def collect_projects(project_tree)
-        project_tree.values.map { |project_node| project_node.fetch(:project) }
       end
 
     end
