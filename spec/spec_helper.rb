@@ -12,6 +12,7 @@ AFK::Configuration.loaded_config[:trello] = {
 
 RSpec.configure do |config|
   config.after { AFK.reset }
+  config.order = :random
   config.filter_run_when_matching :focus
 end
 
