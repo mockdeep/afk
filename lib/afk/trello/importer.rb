@@ -20,8 +20,11 @@ module AFK
 
       def add_checklists(collection, card)
         card.checklists.each do |checklist|
+          unless checklist.name == 'Checklist'
+            checklist_insert = "#{checklist.name}: "
+          end
           checklist.items.each do |item|
-            collection.add_task("#{card.name}: #{item.name}")
+            collection.add_task("#{card.name}:#{checklist_insert}#{item.name}")
           end
         end
       end

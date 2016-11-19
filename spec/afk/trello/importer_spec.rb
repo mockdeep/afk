@@ -88,12 +88,12 @@ RSpec.describe AFK::Trello::Importer do
     end
   end
 
-  it 'grabs checklist items from tasks' do
-    today_list_name = 'Task With Checklist'
+  it 'processes a single task card checklist as sub-tasks' do
+    today_list_name = 'Checklist Tasks'
     AFK.configuration.trello[:today_list_name] = today_list_name
     VCR.use_cassette(today_list_name) do
       forest = importer.()
-      expect(forest.count).to eq 1
+      expect(forest.count).to eq 2
       home = forest.first
       laundry = home.children.first
       expect(laundry).to be_a(AFK::Task)
@@ -105,6 +105,26 @@ RSpec.describe AFK::Trello::Importer do
         'put lights in washer',
         'put colors away',
         'put lights away',
+      ]
+    end
+  end
+
+  it 'processes multiple task card checklists as separate lists' do
+    today_list_name = 'Checklist Tasks'
+    AFK.configuration.trello[:today_list_name] = today_list_name
+    VCR.use_cassette(today_list_name) do
+      forest = importer.()
+      expect(forest.count).to eq 2
+      _, evening = forest
+      expect(evening.children.count).to eq 2
+      rituals, list_stuff = evening.children
+      expect(rituals.children.map(&:title)).to eq [
+        'Brush teeth',
+        'Put on sponge bob pajamas',
+      ]
+      expect(list_stuff.children.map(&:title)).to eq [
+        'Clear inbox',
+        'Print AFK list',
       ]
     end
   end
