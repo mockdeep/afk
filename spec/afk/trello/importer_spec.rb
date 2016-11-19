@@ -32,7 +32,7 @@ RSpec.describe AFK::Trello::Importer do
   end
 
   it 'imports a project nested within another project' do
-    list_name = 'Nested Projects'
+    list_name = 'Nested Task'
     AFK.configuration.trello[:today_list_name] = list_name
     VCR.use_cassette(list_name) do
       forest = importer.()

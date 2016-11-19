@@ -4,7 +4,7 @@ RSpec.describe AFK::Runner do
   let(:runner) { described_class.new(output: output) }
 
   it 'runs the output of the importer through the formatter and outputs it' do
-    list_name = 'Nested Projects'
+    list_name = 'Nested Task'
     AFK.configuration.trello[:today_list_name] = list_name
     VCR.use_cassette(list_name) do
       runner.()
