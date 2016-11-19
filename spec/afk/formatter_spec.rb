@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 RSpec.describe AFK::Formatter do
   let(:formatter) { described_class.new }
+  let(:collection) { AFK::NodeCollection.new }
 
   it 'formats individual task nodes' do
-    task_1 = AFK::Task.new('just a task')
-    expect(formatter.([task_1])).to eq('▢ just a task')
-    task_2 = AFK::Task.new('another task')
-    expect(formatter.([task_1, task_2])).to eq(
+    collection.add_task('just a task')
+    expect(formatter.(collection)).to eq('▢ just a task')
+    collection.add_task('another task')
+    expect(formatter.(collection)).to eq(
       <<~LISTING.strip
         ▢ just a task
 
@@ -16,15 +17,16 @@ RSpec.describe AFK::Formatter do
   end
 
   it 'formats empty project nodes' do
-    project_1 = AFK::Project.new('top project')
-    expect(formatter.([project_1])).to eq(
+    collection.add_project('top project')
+
+    expect(formatter.(collection)).to eq(
       <<~LISTING.strip
         ▶ top project
           ▢
       LISTING
     )
-    project_2 = AFK::Project.new('another project')
-    expect(formatter.([project_1, project_2])).to eq(
+    collection.add_project('another project')
+    expect(formatter.(collection)).to eq(
       <<~LISTING.strip
         ▶ top project
           ▢
@@ -36,17 +38,15 @@ RSpec.describe AFK::Formatter do
   end
 
   it 'formats project nodes with child tasks' do
-    project_1 = AFK::Project.new('top project')
-    project_1.add_child_task('top task!')
-    expect(formatter.([project_1])).to eq(
+    collection.add_task('top project: top task!')
+    expect(formatter.(collection)).to eq(
       <<~LISTING.strip
         ▶ top project
           ▢ top task!
       LISTING
     )
-    project_2 = AFK::Project.new('another project')
-    project_2.add_child_task('second task')
-    expect(formatter.([project_1, project_2])).to eq(
+    collection.add_task('another project: second task')
+    expect(formatter.(collection)).to eq(
       <<~LISTING.strip
         ▶ top project
           ▢ top task!
@@ -58,11 +58,10 @@ RSpec.describe AFK::Formatter do
   end
 
   it 'formats nested projects' do
-    project_1 = AFK::Project.new('top project')
-    project_1.add_child_task('top task!')
-    project_1.add_child_task('nested project: nested task')
+    collection.add_task('top project: top task!')
+    collection.add_task('top project: nested project: nested task')
 
-    expect(formatter.([project_1])).to eq(
+    expect(formatter.(collection)).to eq(
       <<~LISTING.strip
         ▶ top project
           ▢ top task!
