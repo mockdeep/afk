@@ -61,14 +61,13 @@ RSpec.describe AFK::Trello::Importer do
       kitchen, bedroom = home_project.children
       expect(kitchen.title).to eq 'Kitchen'
       expect(bedroom.title).to eq 'Bedroom'
-      expect(kitchen.children.first.title).to eq ''
-      expect(bedroom.children.first.title).to eq ''
+      expect(kitchen.children).to be_empty
+      expect(bedroom.children).to be_empty
       expect(work_project.title).to eq 'Work'
       expect(work_project.children.count).to eq 1
       expect(work_project.children.first.title).to eq 'Desk'
       expect(random_project.title).to eq 'Random'
-      expect(random_project.children.count).to eq 1
-      expect(random_project.children.first.title).to eq ''
+      expect(random_project.children).to be_empty
     end
   end
 end

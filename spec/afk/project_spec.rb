@@ -45,14 +45,6 @@ RSpec.describe AFK::Project do
       project.add_child_task('I am the task')
       expect(project.children.map(&:title)).to eq ['I am the task']
     end
-
-    it 'returns a blank task if there are none' do
-      project = described_class.new('I am a project too!')
-      expect(project.children.count).to eq 1
-      first_child = project.children.first
-      expect(first_child.title).to eq ''
-      expect(first_child.signifier).to eq '▢'
-    end
   end
 
   describe '#signifier' do

@@ -19,10 +19,10 @@ RSpec.describe AFK::NodeCollection do
       joes, marys = nested_project.children
       expect(joes).to be_a(AFK::Project)
       expect(joes.title).to eq 'Joes'
-      expect(joes.children.count).to eq 1
+      expect(joes.children).to be_empty
       expect(marys).to be_a(AFK::Project)
       expect(marys.title).to eq 'Marys'
-      expect(marys.children.count).to eq 1
+      expect(marys.children).to be_empty
     end
   end
 
@@ -43,10 +43,26 @@ RSpec.describe AFK::NodeCollection do
       joes, marys = nested_project.children
       expect(joes).to be_a(AFK::Task)
       expect(joes.title).to eq 'Joes'
-      expect(joes.children.count).to eq 0
+      expect(joes.children).to be_empty
       expect(marys).to be_a(AFK::Task)
       expect(marys.title).to eq 'Marys'
-      expect(marys.children.count).to eq 0
+      expect(marys.children).to be_empty
+    end
+  end
+
+  describe '#empty?' do
+    it 'returns true when there is nothing in the collection' do
+      expect(node_collection).to be_empty
+    end
+
+    it 'returns false when there are projects in the collection' do
+      node_collection.add_project('Wat')
+      expect(node_collection).not_to be_empty
+    end
+
+    it 'returns false when there are tasks in the collection' do
+      node_collection.add_task('Wat')
+      expect(node_collection).not_to be_empty
     end
   end
 end

@@ -40,6 +40,10 @@ module AFK
       nodes
     end
 
+    def empty?
+      !any?
+    end
+
   private
 
     def fetch_project(title)

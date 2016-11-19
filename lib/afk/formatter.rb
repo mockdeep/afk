@@ -17,8 +17,16 @@ module AFK
       nodes.flat_map do |node|
         [
           "#{indent}#{node.signifier} #{node.title}".rstrip,
-          *map_lines(node.children, indent: "#{indent}  "),
+          *map_lines(children_for(node), indent: "#{indent}  "),
         ]
+      end
+    end
+
+    def children_for(node)
+      if node.is_a?(AFK::Project) && node.children.empty?
+        [AFK::Task.new('')]
+      else
+        node.children
       end
     end
 
