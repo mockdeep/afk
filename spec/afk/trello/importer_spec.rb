@@ -46,4 +46,29 @@ RSpec.describe AFK::Trello::Importer do
       expect(nested_project.children.first.title).to eq 'one kitchen task'
     end
   end
+
+  it 'imports projects from a project list' do
+    project_list_name = 'All the Projects'
+    today_list_name = 'Empty List'
+    AFK.configuration.trello[:project_list_name] = project_list_name
+    AFK.configuration.trello[:today_list_name] = today_list_name
+    VCR.use_cassette(project_list_name) do
+      forest = importer.()
+      expect(forest.count).to eq 3
+      home_project, work_project, random_project = forest
+      expect(home_project.title).to eq 'Home'
+      expect(home_project.children.count).to eq 2
+      kitchen, bedroom = home_project.children
+      expect(kitchen.title).to eq 'Kitchen'
+      expect(bedroom.title).to eq 'Bedroom'
+      expect(kitchen.children.first.title).to eq ''
+      expect(bedroom.children.first.title).to eq ''
+      expect(work_project.title).to eq 'Work'
+      expect(work_project.children.count).to eq 1
+      expect(work_project.children.first.title).to eq 'Desk'
+      expect(random_project.title).to eq 'Random'
+      expect(random_project.children.count).to eq 1
+      expect(random_project.children.first.title).to eq ''
+    end
+  end
 end

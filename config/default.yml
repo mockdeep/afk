@@ -1,4 +1,5 @@
 project_signifier: ▶
 task_signifier: ▢
 trello:
-  today_list_name: 'Today'
+  today_list_name: Today
+  project_list_name: Ongoing

@@ -14,7 +14,7 @@ RSpec/MultipleExpectations:
   Enabled: false
 
 RSpec/ExampleLength:
-  Max: 20
+  Max: 25
 
 Style/VariableNumber:
   EnforcedStyle: snake_case
@@ -31,6 +31,12 @@ Style/CollectionMethods:
     inject: 'reduce'
     find: 'detect'
     find_all: 'select'
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
 
 Style/FirstArrayElementLineBreak:
   Enabled: true

@@ -7,6 +7,7 @@ require_relative 'afk/runner'
 require_relative 'afk/task'
 require_relative 'afk/version'
 require_relative 'afk/trello/importer'
+require_relative 'afk/trello/null_list'
 
 # namespace for all AFK code
 module AFK
