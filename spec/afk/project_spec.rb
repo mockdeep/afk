@@ -23,9 +23,27 @@ RSpec.describe AFK::Project do
       project.add_child_project('A: Child')
       expect(project.children.count).to eq 1
       child = project.children.first
+      expect(child).to be_a(described_class)
       expect(child.title).to eq 'A'
       expect(child.children.count).to eq 1
-      expect(child.children.first.title).to eq 'Child'
+      grand_child = child.children.first
+      expect(grand_child).to be_a(described_class)
+      expect(grand_child.title).to eq 'Child'
+    end
+  end
+
+  describe '#add_child_task' do
+    it 'adds a child task node' do
+      project = described_class.new('Yay project')
+      project.add_child_task('A: Child')
+      expect(project.children.count).to eq 1
+      child = project.children.first
+      expect(child).to be_a(described_class)
+      expect(child.title).to eq 'A'
+      expect(child.children.count).to eq 1
+      grand_child = child.children.first
+      expect(grand_child).to be_a(AFK::Task)
+      expect(grand_child.title).to eq 'Child'
     end
   end
 
