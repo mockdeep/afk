@@ -3,14 +3,15 @@ module AFK
   # stores task information
   class Task
 
-    attr_reader :title
+    attr_reader :children, :title
 
     def initialize(title)
       @title = title
+      @children = AFK::NodeCollection.new
     end
 
-    def children
-      []
+    def add_child_task(title)
+      @children.add_task(title)
     end
 
     def signifier

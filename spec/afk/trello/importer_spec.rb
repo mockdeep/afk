@@ -10,9 +10,9 @@ RSpec.describe AFK::Trello::Importer do
       expect(forest.count).to eq 2
       task_1, task_2 = forest
       expect(task_1.title).to eq 'one simple task'
-      expect(task_1.children).to eq []
+      expect(task_1.children).to be_empty
       expect(task_2.title).to eq 'one other task'
-      expect(task_2.children).to eq []
+      expect(task_2.children).to be_empty
     end
   end
 
@@ -85,6 +85,27 @@ RSpec.describe AFK::Trello::Importer do
       kitchen_project = home_project.children.first
       expect(kitchen_project.children.count).to eq 1
       expect(kitchen_project.children.first.title).to eq 'one kitchen task'
+    end
+  end
+
+  it 'grabs checklist items from tasks' do
+    today_list_name = 'Task With Checklist'
+    AFK.configuration.trello[:today_list_name] = today_list_name
+    VCR.use_cassette(today_list_name) do
+      forest = importer.()
+      expect(forest.count).to eq 1
+      home = forest.first
+      laundry = home.children.first
+      expect(laundry).to be_a(AFK::Task)
+      children = laundry.children
+      expect(children.count).to eq 4
+      children.each { |child| expect(child).to be_a(AFK::Task) }
+      expect(children.map(&:title)).to eq [
+        'put colors in washer',
+        'put lights in washer',
+        'put colors away',
+        'put lights away',
+      ]
     end
   end
 end

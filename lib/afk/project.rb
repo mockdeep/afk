@@ -3,7 +3,7 @@ module AFK
   # stores project information
   class Project
 
-    attr_reader :title, :children
+    attr_reader :children, :title
 
     def initialize(title)
       @title = title

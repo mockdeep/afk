@@ -8,12 +8,23 @@ module AFK
 
       def call
         AFK::NodeCollection.new.tap do |collection|
-          today_list.cards.each { |card| collection.add_task(card.name) }
+          today_list.cards.each do |card|
+            collection.add_task(card.name)
+            add_checklists(collection, card)
+          end
           project_list.cards.each { |card| collection.add_project(card.name) }
         end
       end
 
     private
+
+      def add_checklists(collection, card)
+        card.checklists.each do |checklist|
+          checklist.items.each do |item|
+            collection.add_task("#{card.name}: #{item.name}")
+          end
+        end
+      end
 
       def project_list
         @project_list ||= find_list(project_list_name) || null_list

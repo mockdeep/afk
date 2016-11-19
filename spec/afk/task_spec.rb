@@ -11,7 +11,7 @@ RSpec.describe AFK::Task do
 
   describe '#children' do
     it 'returns an empty array' do
-      expect(described_class.new('').children).to eq []
+      expect(described_class.new('').children).to be_empty
     end
   end
 
