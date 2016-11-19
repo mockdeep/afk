@@ -7,16 +7,9 @@ module AFK
     class Importer
 
       def call
-        project_tree = AFK::NodeCollection.new
-        top_tasks = []
-        today_list.cards.each do |card|
-          if card.name.include?(':')
-            project_tree.add_task(card.name)
-          else
-            top_tasks << AFK::Task.new(card.name)
-          end
+        AFK::NodeCollection.new.tap do |collection|
+          today_list.cards.each { |card| collection.add_task(card.name) }
         end
-        top_tasks + project_tree.nodes
       end
 
     private

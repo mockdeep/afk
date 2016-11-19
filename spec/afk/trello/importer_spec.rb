@@ -21,7 +21,7 @@ RSpec.describe AFK::Trello::Importer do
     AFK.configuration.trello[:today_list_name] = list_name
     VCR.use_cassette(list_name) do
       forest = importer.()
-      expect(forest.size).to eq 1
+      expect(forest.count).to eq 1
       project = forest.first
       expect(project.title).to eq 'Home'
       expect(project.children.count).to eq 2
@@ -36,7 +36,7 @@ RSpec.describe AFK::Trello::Importer do
     AFK.configuration.trello[:today_list_name] = list_name
     VCR.use_cassette(list_name) do
       forest = importer.()
-      expect(forest.size).to eq 1
+      expect(forest.count).to eq 1
       project = forest.first
       expect(project.title).to eq 'Home'
       expect(project.children.count).to eq 1
