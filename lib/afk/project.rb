@@ -7,19 +7,27 @@ module AFK
 
     def initialize(title)
       @title = title
-      @children = []
+      @children = AFK::NodeCollection.new
+    end
+
+    def add_child_project(title)
+      @children.add_project(title)
     end
 
     def add_child(node)
-      @children << node
+      @children.nodes << node
     end
 
     def children
-      @children.any? ? @children : [Task.new('')]
+      @children.any? ? @children : [AFK::Task.new('')]
     end
 
     def signifier
       AFK.configuration.project_signifier
+    end
+
+    def inspect
+      "<Project> #{title.inspect} (#{children.inspect})"
     end
 
   end

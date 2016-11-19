@@ -17,6 +17,18 @@ RSpec.describe AFK::Project do
     end
   end
 
+  describe '#add_child_project' do
+    it 'adds a child project node' do
+      project = described_class.new('Yay project')
+      project.add_child_project('A: Child')
+      expect(project.children.count).to eq 1
+      child = project.children.first
+      expect(child.title).to eq 'A'
+      expect(child.children.count).to eq 1
+      expect(child.children.first.title).to eq 'Child'
+    end
+  end
+
   describe '#children' do
     it 'returns the child nodes of the project' do
       project = described_class.new('I am a project too!')
@@ -26,7 +38,7 @@ RSpec.describe AFK::Project do
 
     it 'returns a blank task if there are none' do
       project = described_class.new('I am a project too!')
-      expect(project.children.length).to eq 1
+      expect(project.children.count).to eq 1
       first_child = project.children.first
       expect(first_child.title).to eq ''
       expect(first_child.signifier).to eq '▢'

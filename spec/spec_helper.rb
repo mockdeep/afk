@@ -11,3 +11,7 @@ VCR.configure do |config|
   config.cassette_library_dir = 'tmp/vcr_cassettes'
   config.hook_into :webmock
 end
+
+RSpec.configure do |config|
+  config.filter_run_when_matching :focus
+end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require_relative 'afk/configuration'
 require_relative 'afk/formatter'
+require_relative 'afk/node_collection'
 require_relative 'afk/project'
 require_relative 'afk/runner'
 require_relative 'afk/task'

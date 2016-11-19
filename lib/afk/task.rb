@@ -17,5 +17,9 @@ module AFK
       AFK.configuration.task_signifier
     end
 
+    def inspect
+      "<Task> #{title.inspect}"
+    end
+
   end
 end
