@@ -5,7 +5,7 @@ require 'vcr'
 
 RSpec.configuration.after { AFK.reset }
 
-trello = AFK.configuration.trello
+trello = AFK::Configuration.loaded_config.fetch(:trello)
 trello[:board_id] = 'ui1o0UsE'
 trello[:developer_public_key] ||= ENV.fetch('TRELLO_DEVELOPER_PUBLIC_KEY')
 trello[:member_token] ||= ENV.fetch('TRELLO_MEMBER_TOKEN')
