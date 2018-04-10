@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'afk/configuration'
 require_relative 'afk/formatter'
 require_relative 'afk/node_collection'

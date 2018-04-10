@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.describe AFK::NodeCollection do
   let(:node_collection) { described_class.new }
 

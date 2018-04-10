@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.describe AFK::Configuration do
   let(:configuration) { described_class.new }
 

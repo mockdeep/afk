@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module AFK
   # stores project information
   class Project

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module AFK
   # formats task/project tree as a string
   class Formatter

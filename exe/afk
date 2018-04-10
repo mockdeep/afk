@@ -3,4 +3,11 @@
 
 require_relative '../lib/afk'
 
-AFK::Runner.new.()
+output_index = ARGV.index('-o')
+output =
+  if output_index
+    File.open(ARGV[output_index + 1], 'w')
+  else
+    STDOUT
+  end
+AFK::Runner.new(output: output).()

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module AFK
   # imports projects/tasks from Trello and formats them to output
   class Runner

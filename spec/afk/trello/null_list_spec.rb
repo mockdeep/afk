@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.describe AFK::Trello::NullList do
   let(:list) { described_class.new }
 

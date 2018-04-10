@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'lib/afk/version'
 
 Gem::Specification.new do |spec|
@@ -18,9 +19,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 2.1'
+  spec.required_ruby_version = '>= 2.3'
 
-  spec.add_dependency 'ruby-trello', '~> 1.5'
+  spec.add_dependency 'ruby-trello', '~> 2.0'
 
   spec.add_development_dependency 'bundler', '~> 1.13'
   spec.add_development_dependency 'guard', '~> 2.14'
@@ -29,9 +30,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry', '~> 0.10'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'rubocop', '~> 0.45.0'
-  spec.add_development_dependency 'rubocop-rspec', '~> 1.8.0'
+  spec.add_development_dependency 'rubocop', '~> 0.54.0'
+  spec.add_development_dependency 'rubocop-rspec', '~> 1.25.0'
   spec.add_development_dependency 'simplecov', '~> 0.12'
-  spec.add_development_dependency 'webmock', '~> 2.1'
   spec.add_development_dependency 'vcr', '~> 3.0'
+  spec.add_development_dependency 'webmock', '~> 2.1'
 end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.describe AFK::Runner do
   let(:output) { StringIO.new }
   let(:runner) { described_class.new(output: output) }

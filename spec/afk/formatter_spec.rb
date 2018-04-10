@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.describe AFK::Formatter do
   let(:formatter) { described_class.new }
   let(:collection) { AFK::NodeCollection.new }

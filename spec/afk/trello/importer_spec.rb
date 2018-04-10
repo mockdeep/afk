@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.describe AFK::Trello::Importer do
   let(:importer) { described_class.new }
 
@@ -99,7 +100,7 @@ RSpec.describe AFK::Trello::Importer do
       expect(laundry).to be_a(AFK::Task)
       children = laundry.children
       expect(children.count).to eq 4
-      children.each { |child| expect(child).to be_a(AFK::Task) }
+      expect(children).to all(be_an(AFK::Task))
       expect(children.map(&:title)).to eq [
         'put colors in washer',
         'put lights in washer',

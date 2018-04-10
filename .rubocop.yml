@@ -5,6 +5,12 @@ AllCops:
   TargetRubyVersion: 2.3
   DisplayCopNames: true
 
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
 Metrics/BlockLength:
   Exclude:
     - afk.gemspec
@@ -16,7 +22,7 @@ RSpec/MultipleExpectations:
 RSpec/ExampleLength:
   Max: 25
 
-Style/VariableNumber:
+Naming/VariableNumber:
   EnforcedStyle: snake_case
 
 # default disabled rules
@@ -38,28 +44,28 @@ Style/TrailingCommaInArguments:
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: consistent_comma
 
-Style/FirstArrayElementLineBreak:
+Layout/FirstArrayElementLineBreak:
   Enabled: true
 
-Style/FirstHashElementLineBreak:
+Layout/FirstHashElementLineBreak:
   Enabled: true
 
-Style/FirstMethodArgumentLineBreak:
+Layout/FirstMethodArgumentLineBreak:
   Enabled: true
 
-Style/FirstMethodParameterLineBreak:
+Layout/FirstMethodParameterLineBreak:
   Enabled: true
 
-Style/MultilineArrayBraceLayout:
+Layout/MultilineArrayBraceLayout:
   Enabled: true
 
-Style/MultilineHashBraceLayout:
+Layout/MultilineHashBraceLayout:
   Enabled: true
 
-Style/MultilineMethodCallBraceLayout:
+Layout/MultilineMethodCallBraceLayout:
   Enabled: true
 
-Style/MultilineMethodDefinitionBraceLayout:
+Layout/MultilineMethodDefinitionBraceLayout:
   Enabled: true
 
 Style/OptionHash:
@@ -75,11 +81,14 @@ RSpec/VerifiedDoubles:
 Style/LambdaCall:
   EnforcedStyle: braces
 
-Style/EmptyLinesAroundClassBody:
+Layout/EmptyLinesAroundClassBody:
   EnforcedStyle: empty_lines
 
-Style/AccessModifierIndentation:
+Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
 
-Style/TrailingCommaInLiteral:
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: comma

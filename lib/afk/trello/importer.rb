@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'trello'
 
 module AFK
@@ -8,11 +9,18 @@ module AFK
 
       def call
         AFK::NodeCollection.new.tap do |collection|
+          puts 'adding today list'
           today_list.cards.each do |card|
+            print '.'
             collection.add_task(card.name)
             add_checklists(collection, card)
           end
-          project_list.cards.each { |card| collection.add_project(card.name) }
+          puts
+          puts 'adding project list'
+          project_list.cards.each do |card|
+            print '.'
+            collection.add_project(card.name)
+          end
         end
       end
 
@@ -23,7 +31,7 @@ module AFK
           checklist_insert = checklist.name unless checklist.name == 'Checklist'
           checklist.items.each do |item|
             task_pieces = [card.name, checklist_insert, item.name].compact
-            collection.add_task(task_pieces.join(':'))
+            collection.add_task(task_pieces.join(': '))
           end
         end
       end

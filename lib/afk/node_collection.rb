@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module AFK
   # groups project/task node trees
   class NodeCollection
@@ -13,13 +14,13 @@ module AFK
     end
 
     def add_project(project_title)
-      title, rest = project_title.split(':', 2).map(&:strip)
+      title, rest = project_title.split(': ', 2).map(&:strip)
       project = fetch_project(title)
       project.add_child_project(rest) if rest
     end
 
     def add_task(task_title)
-      project_title, rest = task_title.split(':', 2).map(&:strip)
+      project_title, rest = task_title.split(': ', 2).map(&:strip)
       if rest
         project = fetch_project(project_title)
         project.add_child_task(rest)

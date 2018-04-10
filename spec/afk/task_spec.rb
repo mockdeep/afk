@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.describe AFK::Task do
   describe '#title' do
     it 'returns the title of the task' do

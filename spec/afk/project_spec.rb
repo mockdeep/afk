@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.describe AFK::Project do
   describe '#title' do
     it 'returns the title of the project' do
